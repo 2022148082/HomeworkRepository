@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Signup</title>
+    <!-- main.css를 외부 스타일시트로 연결 -->
+    <link rel="stylesheet" type="text/css" href="main.css" />
+  </head>
+  <body>
+    <h1>Welcome to INTERNET-PROGRAMMING MOVIE SITE</h1>
+    <!-- 로그인 페이지로 이동하는 링크/버튼 -->
+    <p><button onclick="location.href='login.html'">로그인</button> 회원가입</p>
+
+    <div class="signup-container">
+      <form action="#" method="post">
+        <!-- 1) 이름 (text) -->
+        <label for="name">이름 :</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          autofocus
+          autocomplete="name"
+          placeholder="이름을 입력하세요"
+        /><br /><br />
+
+        <!-- 2) 생일 (date) -->
+        <label for="birth">생일 :</label>
+        <input
+          type="date"
+          id="birth"
+          name="birth"
+          required
+          placeholder="연도-월-일"
+        /><br /><br />
+
+        <!-- 3) 성별 (radio) -->
+        <label>성별 :</label>
+        <input
+          type="radio"
+          id="gender-male"
+          name="gender"
+          value="남성"
+          required
+        />
+        <label for="gender-male">남성</label>
+        <input type="radio" id="gender-female" name="gender" value="여성" />
+        <label for="gender-female">여성</label><br /><br />
+
+        <!-- 4) 학년 (number + step) -->
+        <label for="grade">학년 :</label>
+        <input
+          type="number"
+          id="grade"
+          name="grade"
+          min="1"
+          max="6"
+          step="1"
+          placeholder="학년 입력 (1~6)"
+          required
+        /><br /><br />
+
+        <!-- 5) 아이디 (text) -->
+        <label for="userid">아이디 :</label>
+        <input
+          type="text"
+          id="userid"
+          name="userid"
+          required
+          autocomplete="username"
+          placeholder="아이디를 입력하세요"
+        /><br /><br />
+
+        <!-- 6) 비밀번호 (password) -->
+        <label for="password">비밀번호 :</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          required
+          autocomplete="current-password"
+          placeholder="비밀번호를 입력하세요"
+        /><br /><br />
+
+        <!-- 7) 이메일 (email) -->
+        <label for="email">이메일 :</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="이메일 주소"
+        /><br /><br />
+
+        <!-- 8) 보안 질문 (select) -->
+        <label for="security_question">보안 질문 :</label>
+        <select id="security_question" name="security_question" required>
+          <option value="">질문을 선택하세요</option>
+          <option value="fav_movie">가장 좋아하는 영화는?</option>
+          <option value="memorable_trip">가장 기억에 남는 여행지는?</option>
+          <option value="pet_name">애완동물의 이름은?</option></select
+        ><br /><br />
+
+        <!-- 9) 답변 (text) -->
+        <label for="answer">답변 :</label>
+        <input
+          type="text"
+          id="answer"
+          name="answer"
+          required
+          placeholder="답변을 입력하세요"
+        /><br /><br />
+
+        <!-- 회원가입/취소 버튼 -->
+        <button type="submit">Signup</button>
+        <button type="reset">Cancel</button>
+      </form>
+    </div>
+  </body>
+</html>
