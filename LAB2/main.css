@@ -1,0 +1,55 @@
+/* main.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
+  text-align: center;
+  margin: 0; /* margin 초기화 */
+  padding: 0; /* padding 초기화 */
+}
+
+h1 {
+  color: #333333;
+  margin: 20px 0;
+}
+
+.signup-container,
+.login-container {
+  width: 400px;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  font-size: 16px;
+  text-align: left;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+  margin-bottom: 10px;
+}
+
+input,
+select,
+button {
+  margin-bottom: 10px;
+}
+
+button {
+  width: 80px;
+  height: 40px;
+  color: #555555;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-radius: 3px;
+}
+
+button[type="submit"] {
+  background-color: #4caf50;
+}
+
+button[type="reset"] {
+  background-color: #f44336;
+}
