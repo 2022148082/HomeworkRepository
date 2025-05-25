@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Homepage</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 헤더 및 네비게이션 -->
+      <header class="header-wrapper">
+        <h1>My Favorite Movies</h1>
+        <nav class="nav-container">
+          <a href="index.html">Home</a>
+          <a href="login.html">Login</a>
+          <a href="signup.html">Sign Up</a>
+        </nav>
+      </header>
+
+      <!-- 검색 바 -->
+      <div class="search-bar">
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="키워드를 입력하세요."
+        />
+        <button id="search-btn">Filter results</button>
+      </div>
+
+      <!-- 필터(정렬) + 영화 리스트 컨테이너 -->
+      <div class="content">
+        <aside class="filter-panel">
+          <h3>정렬 기준</h3>
+          <label
+            ><input type="radio" name="sort" value="rating_desc" checked /> 평점
+            내림차순</label
+          ><br />
+          <label
+            ><input type="radio" name="sort" value="rating_asc" /> 평점
+            오름차순</label
+          ><br />
+          <label
+            ><input type="radio" name="sort" value="date_desc" /> 개봉
+            내림차순</label
+          ><br />
+          <label
+            ><input type="radio" name="sort" value="date_asc" /> 개봉
+            오름차순</label
+          >
+        </aside>
+        <main class="movie-list" id="movies-container"></main>
+      </div>
+    </div>
+
+    <script>
+      let moviesData = [];
+      let filteredData = [];
+      let currentIndex = 0;
+      const batchSize = 6;
+      const container = document.getElementById("movies-container");
+
+      // 1) Fetch API로 product.json 불러오기 (25pt)
+      fetch("product.json")
+        .then((res) => res.json())
+        .then((data) => {
+          moviesData = data;
+          filteredData = moviesData;
+          applySort(); // 초기 정렬 + 로딩
+        })
+        .catch((err) => console.error(err));
+
+      // 2) Infinite Scroll 구현 (30pt)
+      function loadMovies() {
+        const slice = filteredData.slice(
+          currentIndex,
+          currentIndex + batchSize
+        );
+        slice.forEach((movie) => {
+          const item = document.createElement("div");
+          item.className = "movie-item";
+          item.innerHTML = `
+          <div class="image-container">
+            <img src="${movie.poster_path}" alt="${movie.title}" />
+            <div class="overlay"><p>${movie.overview}</p></div>
+          </div>
+          <div class="movie-info">
+            <span class="movie-title">${movie.title}</span><br/>
+            <span class="release-date">${movie.release_date}</span><br/>
+            <span class="rating">⭐ ${movie.rating}/10</span>
+          </div>
+        `;
+          container.appendChild(item);
+        });
+        currentIndex += batchSize;
+      }
+
+      window.addEventListener("scroll", () => {
+        if (
+          window.innerHeight + window.scrollY >=
+          document.body.offsetHeight - 50
+        ) {
+          if (currentIndex < filteredData.length) loadMovies();
+        }
+      });
+
+      // 3) 키워드 검색 필터링 (20pt)
+      document.getElementById("search-btn").addEventListener("click", () => {
+        console.log("Search button clicked");
+        const kw = document
+          .getElementById("search-input")
+          .value.trim()
+          .toLowerCase();
+        filteredData = moviesData.filter(
+          (m) =>
+            m.title.toLowerCase().includes(kw) ||
+            m.overview.toLowerCase().includes(kw)
+        );
+        applySort();
+      });
+
+      // 4) Sort 기능 4가지 (20pt)
+      document.querySelectorAll('input[name="sort"]').forEach((radio) => {
+        radio.addEventListener("change", applySort);
+      });
+
+      function applySort() {
+        const type = document.querySelector('input[name="sort"]:checked').value;
+        if (type === "rating_desc") {
+          filteredData.sort((a, b) => b.rating - a.rating);
+        } else if (type === "rating_asc") {
+          filteredData.sort((a, b) => a.rating - b.rating);
+        } else if (type === "date_desc") {
+          filteredData.sort(
+            (a, b) => new Date(b.release_date) - new Date(a.release_date)
+          );
+        } else if (type === "date_asc") {
+          filteredData.sort(
+            (a, b) => new Date(a.release_date) - new Date(b.release_date)
+          );
+        }
+        // 새로 렌더링
+        container.innerHTML = "";
+        currentIndex = 0;
+        loadMovies();
+      }
+
+      // 5) Hover 시 줄거리 출력 (20pt) — CSS로 .overlay 보이기/숨기기 처리
+      function loadMovies() {
+        const slice = filteredData.slice(
+          currentIndex,
+          currentIndex + batchSize
+        );
+        slice.forEach((movie) => {
+          const item = document.createElement("div");
+          item.className = "movie-item";
+          item.innerHTML = `
+        <div class="image-container">
+          <img src="${movie.poster_path}" alt="${movie.title}" />
+          <div class="overlay"><p>${movie.overview}</p></div>
+        </div>
+        <div class="movie-info">
+          <span class="movie-title">${movie.title}</span><br/>
+          <span class="release-date">${movie.release_date}</span><br/>
+          <span class="rating">⭐ ${movie.rating}/10</span>
+        </div>
+      `;
+
+          // JS로 호버 처리
+          const imgCont = item.querySelector(".image-container");
+          const overlay = item.querySelector(".overlay");
+          imgCont.addEventListener("mouseenter", () => {
+            overlay.style.opacity = "1";
+          });
+          imgCont.addEventListener("mouseleave", () => {
+            overlay.style.opacity = "0";
+          });
+
+          container.appendChild(item);
+        });
+        currentIndex += batchSize;
+      }
+    </script>
+  </body>
+</html>

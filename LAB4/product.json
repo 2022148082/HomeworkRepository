@@ -1,0 +1,162 @@
+[
+  {
+    "id": 862,
+    "title": "Toy Story",
+    "release_date": "1995-10-30",
+    "rating": 7.7,
+    "poster_path": "./toystory.jpg",
+    "overview": "Led by Woody, Andy's toys live happily in his room until Andy's birthday brings Buzz Lightyear—a space ranger action figure who’s convinced he’s real. Rivalry turns to friendship, and the two embark on a harrowing rescue mission to save their fellow toys and get back home."
+  },
+  {
+    "id": 8844,
+    "title": "Jumanji",
+    "release_date": "1995-12-15",
+    "rating": 6.9,
+    "poster_path": "./jumanji.jpg",
+    "overview": "When siblings Judy and Peter discover an enchanted board game, they unwittingly release Alan Parrish, trapped for decades in Jumanji's world. To save Alan and restore normality, they must finish the game—facing rampaging rhinos, evil monkeys and other terrifying creatures."
+  },
+  {
+    "id": 15602,
+    "title": "Grumpier Old Men",
+    "release_date": "1995-12-22",
+    "rating": 6.5,
+    "poster_path": "./grumpier.jpg",
+    "overview": "John and Max’s fishing pond feud continues, but this time their rivalry is complicated by a new neighbor, Ariel, who charms them both. As the two old men vie for her attention, they rediscover their friendship—and perhaps some unexpected romance."
+  },
+  {
+    "id": 31357,
+    "title": "Waiting to Exhale",
+    "release_date": "1995-12-22",
+    "rating": 6.1,
+    "poster_path": "./exhale.jpg",
+    "overview": "Four friends face the ups and downs of love and friendship in Phoenix. Through heartbreak and hope, they lean on each other—discovering the power of sisterhood and the courage to start anew."
+  },
+  {
+    "id": 11862,
+    "title": "Father of the Bride Part II",
+    "release_date": "1995-02-10",
+    "rating": 5.7,
+    "poster_path": "./father.jpg",
+    "overview": "George Banks must once again cope with changes in his life as his daughter prepares for her baby's arrival, while his wife also finds herself expecting, leading to double the chaos—and double the joy."
+  },
+  {
+    "id": 949,
+    "title": "Heat",
+    "release_date": "1995-12-15",
+    "rating": 7.7,
+    "poster_path": "./heat.jpg",
+    "overview": "A master thief and a dedicated LAPD detective find themselves locked in a high-stakes game of cat and mouse. As each plans the other's defeat, respect—and something more—grows between them."
+  },
+  {
+    "id": 11860,
+    "title": "Sabrina",
+    "release_date": "1995-12-15",
+    "rating": 6.2,
+    "poster_path": "./sabrina.jpg",
+    "overview": "Sabrina Fairchild returns from Paris transformed. Caught between the wealthy Larrabee brothers, she must decide whether to follow her heart or her head."
+  },
+  {
+    "id": 45325,
+    "title": "Tom and Huck",
+    "release_date": "1995-12-22",
+    "rating": 5.4,
+    "poster_path": "./sam.jpg",
+    "overview": "Based on Mark Twain’s classic, young Tom Sawyer and his best friend Huck Finn witness a murder and must use their wits to bring the criminal to justice."
+  },
+  {
+    "id": 9091,
+    "title": "Sudden Death",
+    "release_date": "1995-12-22",
+    "rating": 5.5,
+    "poster_path": "./sudden.jpg",
+    "overview": "A lone firefighter must battle terrorists who take over the Pittsburgh Civic Arena during the Stanley Cup finals, risking everything to save the president’s daughter—and the nation."
+  },
+  {
+    "id": 710,
+    "title": "GoldenEye",
+    "release_date": "1995-11-16",
+    "rating": 6.6,
+    "poster_path": "./goldeneye.jpg",
+    "overview": "James Bond returns in his fifteenth outing to prevent a rogue agent from using a satellite weapon capable of mass destruction."
+  },
+  {
+    "id": 9087,
+    "title": "The American President",
+    "release_date": "1995-11-17",
+    "rating": 6.5,
+    "poster_path": "./america.jpg",
+    "overview": "Widowed U.S. President Andrew Shepherd falls in love with an environmental lobbyist, risking political scandal and personal heartbreak."
+  },
+  {
+    "id": 12110,
+    "title": "Dracula: Dead and Loving It",
+    "release_date": "1995-12-22",
+    "rating": 5.7,
+    "poster_path": "./dracula.jpg",
+    "overview": "A Mel Brooks spoof of the classic vampire tale, filled with slapstick humor and over-the-top characters."
+  },
+  {
+    "id": 21032,
+    "title": "Balto",
+    "release_date": "1995-12-22",
+    "rating": 7.1,
+    "poster_path": "./balto.jpg",
+    "overview": "Inspired by a true story, a half-wolf, half-dog leads a sled dog team to deliver medicine through harsh conditions to save children from a diphtheria outbreak."
+  },
+  {
+    "id": 10858,
+    "title": "Nixon",
+    "release_date": "1995-12-22",
+    "rating": 7.1,
+    "poster_path": "./nixon.jpg",
+    "overview": "An intimate portrait of the complex life and political career of U.S. President Richard Nixon."
+  },
+  {
+    "id": 1408,
+    "title": "Cutthroat Island",
+    "release_date": "1995-12-22",
+    "rating": 5.7,
+    "poster_path": "./cutt.jpg",
+    "overview": "A swashbuckling pirate adventure as a fierce captain hunts for hidden treasure on a deadly island."
+  },
+  {
+    "id": 524,
+    "title": "Casino",
+    "release_date": "1995-11-22",
+    "rating": 7.8,
+    "poster_path": "./casino.jpg",
+    "overview": "An epic tale of greed, deception and power set in the 1970s Las Vegas casino world."
+  },
+  {
+    "id": 4584,
+    "title": "Sense and Sensibility",
+    "release_date": "1995-12-13",
+    "rating": 7.2,
+    "poster_path": "./sense.jpg",
+    "overview": "An adaptation of Jane Austen’s novel following the Dashwood sisters as they navigate love, heartbreak and societal expectations."
+  },
+  {
+    "id": 5,
+    "title": "Four Rooms",
+    "release_date": "1995-12-09",
+    "rating": 6.5,
+    "poster_path": "./four.jpg",
+    "overview": "Four interconnected stories unfold in a seedy hotel on New Year’s Eve, with an inept bellhop caught in the bizarre chaos."
+  },
+  {
+    "id": 9273,
+    "title": "Ace Ventura: When Nature Calls",
+    "release_date": "1995-11-10",
+    "rating": 6.1,
+    "poster_path": "./ace.jpg",
+    "overview": "Summoned from an ashram in Tibet, Ace finds himself on a mission to save a sacred bat from a warlord’s clutches—using his trademark humor and unorthodox methods."
+  },
+  {
+    "id": 11517,
+    "title": "Money Train",
+    "release_date": "1995-11-21",
+    "rating": 5.4,
+    "poster_path": "./money.jpg",
+    "overview": "A vengeful New York transit cop decides to steal from the city’s Money Train, forcing his foster brother, also a cop, to choose between law and family."
+  }
+]
