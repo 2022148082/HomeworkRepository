@@ -112,10 +112,8 @@
           .getElementById("search-input")
           .value.trim()
           .toLowerCase();
-        filteredData = moviesData.filter(
-          (m) =>
-            m.title.toLowerCase().includes(kw) ||
-            m.overview.toLowerCase().includes(kw)
+        filteredData = moviesData.filter((m) =>
+          m.title.toLowerCase().includes(kw)
         );
         applySort();
       });
