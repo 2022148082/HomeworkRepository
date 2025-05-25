@@ -151,7 +151,7 @@ button[type="reset"] {
   pointer-events: none; /* overlay도 마우스 이벤트를 가로채지 않게 */
 }
 
-.movie-title {
+/* .movie-title {
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -161,7 +161,7 @@ button[type="reset"] {
   padding: 5px 10px;
   opacity: 0;
   transition: opacity 0.3s;
-}
+} */
 
 .image-container:hover .movie-title {
   opacity: 1;
