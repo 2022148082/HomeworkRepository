@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Homepage</title>
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- 헤더 및 네비게이션 -->
+      <header class="header-wrapper">
+        <h1>My Favorite Movies</h1>
+        <nav class="nav-container">
+          <a href="index.html">Home</a>
+          <a href="login.html">Login</a>
+          <a href="signup.html">Sign Up</a>
+        </nav>
+      </header>
+
+      <!-- 검색 바 -->
+      <div class="search-bar">
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="키워드를 입력하세요."
+        />
+        <button id="search-btn">Filter results</button>
+      </div>
+
+      <!-- 필터(정렬) + 영화 리스트 컨테이너 -->
+      <div class="content">
+        <aside class="filter-panel">
+          <h3>정렬 기준</h3>
+          <label
+            ><input type="radio" name="sort" value="rating_desc" checked /> 평점
+            내림차순</label
+          ><br />
+          <label
+            ><input type="radio" name="sort" value="rating_asc" /> 평점
+            오름차순</label
+          ><br />
+          <label
+            ><input type="radio" name="sort" value="date_desc" /> 개봉
+            내림차순</label
+          ><br />
+          <label
+            ><input type="radio" name="sort" value="date_asc" /> 개봉
+            오름차순</label
+          >
+        </aside>
+        <main class="movie-list" id="movies-container"></main>
+      </div>
+    </div>
+
+    <script>
+      const container = document.getElementById("movies-container");
+      let offset = 0;
+      const limit = 6;
+      let keyword = "";
+      let sortType = "rating_desc";
+
+      // 1) XMLHttpRequest 로 데이터 가져오기
+      function getMovies(params, cb) {
+        const qs = new URLSearchParams(params).toString();
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", "/api/movies?" + qs, true);
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              const data = JSON.parse(xhr.responseText);
+              cb(null, data);
+            } else {
+              cb(new Error(xhr.statusText));
+            }
+          }
+        };
+        xhr.send();
+      }
+
+      // 2) 받아온 영화 목록 화면에 렌더링
+      function renderMovies(list) {
+        list.forEach((movie) => {
+          const el = document.createElement("div");
+          el.className = "movie-item";
+          el.innerHTML = `
+      <div class="image-container">
+        <img src="${movie.poster_path}" alt="${movie.title}" />
+        <div class="overlay"><p>${movie.overview}</p></div>
+      </div>
+      <div class="movie-info">
+        <span class="movie-title">${movie.title}</span><br/>
+        <span class="release-date">${movie.release_date}</span><br/>
+        <span class="rating">⭐ ${movie.rating}/10</span>
+      </div>
+    `;
+
+          el.addEventListener("click", () => {
+            window.location.href = `/movies/${movie.movie_id}`;
+          });
+
+          container.appendChild(el);
+        });
+      }
+
+      // 3) 배치 단위 로드
+      function loadBatch() {
+        getMovies(
+          { q: keyword, sort: sortType, offset, limit },
+          (err, data) => {
+            if (err) return console.error(err);
+            renderMovies(data);
+            offset += data.length;
+          }
+        );
+      }
+
+      // 검색 버튼
+      document.getElementById("search-btn").addEventListener("click", () => {
+        keyword = document.getElementById("search-input").value.trim();
+        offset = 0;
+        container.innerHTML = "";
+        loadBatch();
+      });
+
+      // 정렬 라디오
+      document.querySelectorAll('input[name="sort"]').forEach((r) => {
+        r.addEventListener("change", () => {
+          sortType = r.value;
+          offset = 0;
+          container.innerHTML = "";
+          loadBatch();
+        });
+      });
+
+      // 무한 스크롤
+      window.addEventListener("scroll", () => {
+        if (
+          window.innerHeight + window.scrollY >=
+          document.body.offsetHeight - 50
+        ) {
+          loadBatch();
+        }
+      });
+
+      // 최초 한 번 로드
+      loadBatch();
+    </script>
+  </body>
+</html>

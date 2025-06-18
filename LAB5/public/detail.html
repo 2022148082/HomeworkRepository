@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>영화 상세페이지</title>
+    <link rel="stylesheet" href="/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>My Favorite Movies</h1>
+      <nav class="nav-container">
+        <a href="/index.html">Home</a>
+        <a href="/login.html">Login</a>
+        <a href="/signup.html">Sign Up</a>
+      </nav>
+
+      <!-- 영화 상세 정보 -->
+      <section id="movie-detail" class="movie-detail">
+        <img id="movie-image" src="" alt="Movie Poster" />
+        <div class="movie-info">
+          <h2 id="movie-title">영화 제목</h2>
+          <p>영화 id: <span id="movie-id"></span></p>
+          <p>개봉일: <span id="movie-release-date"></span></p>
+          <p>평점: <span id="movie-rate"></span></p>
+          <p>줄거리: <span id="movie-overview"></span></p>
+        </div>
+      </section>
+
+      <!-- 댓글 섹션 -->
+      <section class="comments-section">
+        <h3>영화 후기</h3>
+        <ul id="comments-list" class="comments-list">
+          <!-- 기존 comment.json 에 들어있는 후기들 -->
+        </ul>
+        <div class="comment-form">
+          <input
+            type="text"
+            id="new-comment-text"
+            placeholder="후기를 작성하세요"
+          />
+          <button id="post-comment-btn">등록하기!</button>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      (function () {
+        const segments = location.pathname.split("/");
+        const movieId = segments[segments.length - 1];
+
+        const imgEl = document.getElementById("movie-image");
+        const titleEl = document.getElementById("movie-title");
+        const idEl = document.getElementById("movie-id");
+        const dateEl = document.getElementById("movie-release-date");
+        const rateEl = document.getElementById("movie-rate");
+        const overEl = document.getElementById("movie-overview");
+        const listEl = document.getElementById("comments-list");
+        const inputEl = document.getElementById("new-comment-text");
+        const btnEl = document.getElementById("post-comment-btn");
+
+        function xhrGet(url, cb) {
+          const xhr = new XMLHttpRequest();
+          xhr.open("GET", url, true);
+          xhr.onload = () => {
+            if (xhr.status === 200) cb(null, JSON.parse(xhr.responseText));
+            else cb(new Error(xhr.statusText));
+          };
+          xhr.send();
+        }
+        function xhrPost(url, data, cb) {
+          const xhr = new XMLHttpRequest();
+          xhr.open("POST", url, true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.onload = () => {
+            if (xhr.status === 201) cb(null, JSON.parse(xhr.responseText));
+            else cb(new Error(xhr.statusText));
+          };
+          xhr.send(JSON.stringify(data));
+        }
+
+        xhrGet("/api/movies/" + movieId, (err, m) => {
+          if (err) return console.error(err);
+          imgEl.src = m.poster_path;
+          imgEl.alt = m.title;
+          titleEl.textContent = m.title;
+          idEl.textContent = m.movie_id;
+          dateEl.textContent = m.release_date;
+          rateEl.textContent = m.rating;
+          overEl.textContent = m.overview;
+        });
+
+        function loadComments() {
+          listEl.innerHTML = "";
+          xhrGet("/api/movies/" + movieId + "/comments", (err, comments) => {
+            if (err) return console.error(err);
+            comments.forEach((c) => {
+              const li = document.createElement("li");
+              li.className = "comment-item";
+              li.textContent = c.text;
+              listEl.appendChild(li);
+            });
+          });
+        }
+        loadComments();
+
+        btnEl.addEventListener("click", () => {
+          const text = inputEl.value.trim();
+          if (!text) return;
+          xhrPost(
+            "/api/movies/" + movieId + "/comments",
+            { author: "anonymous", rating: 0, text },
+            (err) => {
+              if (err) return console.error(err);
+              inputEl.value = "";
+              loadComments();
+            }
+          );
+        });
+      })();
+    </script>
+  </body>
+</html>
